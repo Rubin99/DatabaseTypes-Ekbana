@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".sharedpreferences.SecondActivity">
 
     <TextView
@@ -13,21 +12,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NAME"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"/>
+        android:text="Logout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
 
         <Button
-            android:id="@+id/nextBtn"
+            android:id="@+id/fileBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next Page ->"
-            android:layout_gravity="end|bottom"
-            />
+            android:layout_margin="8dp"
+            android:text="File I/O" />
 
+        <Button
+            android:id="@+id/roomBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Room" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DatabaseTypes</string>
+    <string name="movie_name_year">Movie Name (year)</string>
+    <string name="most_recent">Most Recent</string>
+    <string name="metascore">Metascore</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
 </resources>

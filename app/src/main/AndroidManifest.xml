@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DatabaseTypes">
-        <activity android:name=".FileActivity"></activity>
+        <activity android:name=".recyclerview.ItemsAddActivity"></activity>
+        <activity android:name=".recyclerview.RecyclerActivity" />
+        <activity android:name=".fileio.FileActivity" />
         <activity android:name=".sharedpreferences.SecondActivity" />
         <activity android:name=".sharedpreferences.MainActivity">
             <intent-filter>

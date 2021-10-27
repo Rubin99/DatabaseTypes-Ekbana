@@ -8,8 +8,9 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.databasetypes.FileActivity
+import com.example.databasetypes.fileio.FileActivity
 import com.example.databasetypes.R
+import com.example.databasetypes.recyclerview.RecyclerActivity
 
 
 class SecondActivity : AppCompatActivity() {
@@ -20,7 +21,8 @@ class SecondActivity : AppCompatActivity() {
     var sharedPref: SharedPreferences? = null
     var sharedPrefEditor: SharedPreferences.Editor? = null
 
-    private lateinit var nextBtn: Button
+    private lateinit var fileBtn: Button
+    private lateinit var roomBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,8 @@ class SecondActivity : AppCompatActivity() {
         displayNameTextView = findViewById(R.id.displayNameTextView)
         logoutBtn = findViewById(R.id.logoutBtn)
 
-        nextBtn = findViewById(R.id.nextBtn)
+        fileBtn = findViewById(R.id.fileBtn)
+        roomBtn = findViewById(R.id.roomBtn)
 
         sharedPref = getSharedPreferences("SharedPrefFile", MODE_PRIVATE);
         checkLogin();
@@ -37,9 +40,14 @@ class SecondActivity : AppCompatActivity() {
         logoutBtn.setOnClickListener(View.OnClickListener {
             logout()
         })
-        nextBtn.setOnClickListener(View.OnClickListener {
+        fileBtn.setOnClickListener(View.OnClickListener {
             val n = Intent(this, FileActivity::class.java)
             startActivity(n)
+            finish()
+        })
+        roomBtn.setOnClickListener(View.OnClickListener {
+            val r = Intent(this, RecyclerActivity::class.java)
+            startActivity(r)
             finish()
         })
     }
