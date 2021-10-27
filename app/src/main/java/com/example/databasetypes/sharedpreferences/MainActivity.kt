@@ -1,4 +1,4 @@
-package com.example.databasetypes
+package com.example.databasetypes.sharedpreferences
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.databasetypes.R
 
 
 class MainActivity : AppCompatActivity() {

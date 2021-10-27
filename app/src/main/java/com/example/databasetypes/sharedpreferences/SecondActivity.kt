@@ -1,4 +1,4 @@
-package com.example.databasetypes
+package com.example.databasetypes.sharedpreferences
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.databasetypes.FileActivity
+import com.example.databasetypes.R
 
 
 class SecondActivity : AppCompatActivity() {
@@ -18,6 +20,8 @@ class SecondActivity : AppCompatActivity() {
     var sharedPref: SharedPreferences? = null
     var sharedPrefEditor: SharedPreferences.Editor? = null
 
+    private lateinit var nextBtn: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
@@ -25,11 +29,18 @@ class SecondActivity : AppCompatActivity() {
         displayNameTextView = findViewById(R.id.displayNameTextView)
         logoutBtn = findViewById(R.id.logoutBtn)
 
+        nextBtn = findViewById(R.id.nextBtn)
+
         sharedPref = getSharedPreferences("SharedPrefFile", MODE_PRIVATE);
         checkLogin();
 
         logoutBtn.setOnClickListener(View.OnClickListener {
             logout()
+        })
+        nextBtn.setOnClickListener(View.OnClickListener {
+            val n = Intent(this, FileActivity::class.java)
+            startActivity(n)
+            finish()
         })
     }
 
