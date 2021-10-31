@@ -1,17 +1,15 @@
 package com.example.databasetypes.roomdatabase
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
+import androidx.lifecycle.LiveData
+import androidx.room.*
 
-interface MovieDao {
+@Dao
+interface  MovieDao {
     @Query("SELECT * FROM movie_list ORDER BY ratingMetascoreTV ASC")
-    fun getByRating(): Flow<List<Movie>>
+    fun getByRating(): LiveData<List<Movie>>
 
     @Query("SELECT * FROM movie_list")
-    fun getAll(): Flow<List<Movie>>
+    fun getAll(): LiveData<List<Movie>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(movie: Movie)
@@ -21,4 +19,7 @@ interface MovieDao {
 
     @Query("DELETE FROM movie_list")
     suspend fun deleteAll()
+
+    @Update
+    suspend fun updateMovie(movie: Movie)
 }

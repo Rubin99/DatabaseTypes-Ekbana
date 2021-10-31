@@ -1,35 +1,40 @@
 package com.example.databasetypes.roomdatabase
 
+import android.app.Application
 import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
+class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
-    val allMovies: LiveData<List<Movie>> = repository.allMovies.asLiveData()
-    val allMoviesByRating: LiveData<List<Movie>> = repository.allMoviesByRating.asLiveData()
+    val getAllMovies: LiveData<List<Movie>>
+    private val repository: MovieRepository
 
-    fun insert(movie: Movie) = viewModelScope.launch {
-        repository.insert(movie)
+    init {
+        val movieDao = MovieRoomDatabase.getDatabase(application).movieDao()
+        repository = MovieRepository(movieDao)
+        getAllMovies =repository.getAll
     }
 
-    fun delete(movie: Movie) = viewModelScope.launch {
-        repository.delete(movie)
-    }
-
-    fun deleteAll() = viewModelScope.launch {
-        repository.deleteAll()
-    }
-
-    class MovieViewModelFactory(private val repository: MovieRepository) :
-        ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(MovieViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return MovieViewModel(repository) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
+    fun addMovie(movie: Movie){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addMovie(movie)
         }
-
+    }
+    fun updateMovie(movie: Movie){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateMovie(movie)
+        }
+    }
+    fun deleteMovie(movie: Movie){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteMovie(movie)
+        }
+    }
+    fun deleteAll(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllMovies()
+        }
     }
 
 }
