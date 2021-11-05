@@ -3,6 +3,8 @@ package com.example.databasetypes.recyclerview
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -70,7 +72,7 @@ class RecyclerActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         recyclerAdapter = RecyclerAdapter(){
-            //navigateToUpdateActivity(user[it])
+            navigateToUpdateActivity(movie[it])
         }
         recyclerView?.adapter = recyclerAdapter
         recyclerView?.layoutManager = LinearLayoutManager(this)
@@ -90,8 +92,26 @@ class RecyclerActivity : AppCompatActivity() {
 */
     }
 
-    /*private fun navigateToUpdateActivity(movie: Movie) {
-        val u = Intent(this, )
-    }*/
+    private fun navigateToUpdateActivity(movie: Movie) {
+        val intent=Intent(this,ItemsUpdateActivity::class.java)
+        intent.putExtra("toUpdate",movie)
+        startActivity(intent)
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.deleteAll){
+            deleteAll()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteAll() {
+        movieViewModel.deleteAll()
+        Toast.makeText(this, "DELETED EVERYTHING", Toast.LENGTH_LONG).show()
+    }
 }

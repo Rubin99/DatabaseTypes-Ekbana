@@ -1,21 +1,18 @@
 package com.example.databasetypes.recyclerview
 
-import android.content.Context
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.databasetypes.R
 import com.example.databasetypes.inflate
 import com.example.databasetypes.roomdatabase.Movie
-import com.squareup.picasso.Picasso
 
 class RecyclerAdapter(
-    private val onBookmarkClicked: (position: Int) -> Unit
+    private val onItemClicked: (position: Int) -> Unit
 
 ) : RecyclerView.Adapter<RecyclerViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         RecyclerViewHolder(parent.inflate(R.layout.adapter_items_list)) { position ->
-            onBookmarkClicked(position)
+            onItemClicked(position)
         }
 
     private var recyclerDataList = emptyList<Movie>()

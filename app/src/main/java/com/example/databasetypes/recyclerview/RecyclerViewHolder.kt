@@ -6,11 +6,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.databasetypes.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class RecyclerViewHolder(
     private val itemView: View,
-    private val onBookmarkClicked: (position: Int) -> Unit
+    private val onItemClicked: (position: Int) -> Unit
 ) : RecyclerView.ViewHolder(itemView) {
 
     var bookmarkImageBtn: ImageButton = itemView.findViewById(R.id.bookmarkImageBtn)
@@ -21,8 +20,8 @@ class RecyclerViewHolder(
     val ratingMetascoreTV: TextView = itemView.findViewById(R.id.ratingMetascoreTV)
 
     init {
-        bookmarkImageBtn.setOnClickListener {
-            onBookmarkClicked(adapterPosition)
+        itemView.setOnClickListener {
+            onItemClicked(adapterPosition)
         }
     }
 
